@@ -15,6 +15,8 @@ DEEPSEEK_API_KEY='xxxxx'
 OPENROUTER_API_KEY='xxxxx'
 root@ai-ubuntu22gpu-nvidia-l4:/opt/A2S_AgenticSeek_TEST_RUN_8_GITHUB/A2S_AgenticSeek#
 
+find . -type f -exec sed -i 's/10.0.11.107/YOUR-SERVER-IP/g' {} +
+
 chown -R ai:ai /opt
 
 docker compose up
