@@ -1,4 +1,4 @@
-A2S-AI (Build and Run)
+# A2S-AI (Build and Run)
 
 ```
 git clone https://github.com/a2s-ai/A2S_AgenticSeek.git
