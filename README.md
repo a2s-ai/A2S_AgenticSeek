@@ -22,6 +22,18 @@ docker compose up
 
 ![a2s-ai](a2s-ai/a2s-ai_agenticseek_1.jpg)
 
+# A2S-AI (CleanUp)
+
+```
+STRG / Control + C
+
+docker compose down
+
+docker system prune -a --volumes -f
+
+docker volume ls | egrep "agenticseek" | awk '{print $2}' | xargs -L 1 -I % docker volume rm %
+```
+
 # AgenticSeek: Private, Local Manus Alternative.
 
 <p align="center">
