@@ -26,7 +26,7 @@ from sources.schemas import QueryRequest, QueryResponse
 from celery import Celery
 
 api = FastAPI(title="AgenticSeek API", version="0.1.0")
-celery_app = Celery("tasks", broker="redis://localhost:6379/0", backend="redis://localhost:6379/0")
+celery_app = Celery("tasks", broker="redis://redis:6379/0", backend="redis://redis:6379/0")
 celery_app.conf.update(task_track_started=True)
 logger = Logger("backend.log")
 config = configparser.ConfigParser()
@@ -34,7 +34,7 @@ config.read('config.ini')
 
 api.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost", "http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

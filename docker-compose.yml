@@ -31,8 +31,8 @@ services:
     volumes:
       - ./searxng:/etc/searxng:rw,z
     environment:
-      - SEARXNG_BASE_URL=http://localhost:8080/
-      - SEARXNG_SECRET_KEY=$(openssl rand -hex 32)
+      - SEARXNG_BASE_URL=http://10.0.11.107:8080/
+      - SEARXNG_SECRET_KEY=49b857fa3d63247783903f4d8315f9f5c7372bf2b2b80d8fb376a3fe12465f19
       - UWSGI_WORKERS=4
       - UWSGI_THREADS=4
     cap_add:
@@ -65,37 +65,37 @@ services:
       - BACKEND_URL=http://backend:8000
     networks:
       - agentic-seek-net
-  
+
   # NOTE: backend service is not working yet due to issue with chromedriver on docker.
   # Therefore backend is run on host machine.
   # Open to pull requests to fix this.
 
-  #backend:
-  #  container_name: backend
-  #  build:
-  #    context: ./
-  #    dockerfile: Dockerfile.backend
-  #  stdin_open: true
-  #  tty: true
-  #  shm_size: 8g
-  #  ports:
-  #    - "8000:8000"
-  #  volumes:
-  #    - ./:/app
-  #  environment:
-  #    - NODE_ENV=development
-  #    - REDIS_URL=redis://redis:6379/0
-  #    - SEARXNG_URL=http://searxng:8080
-  #    - OLLAMA_URL=http://localhost:11434
+  backend:
+    container_name: backend
+    build:
+      context: ./
+      dockerfile: Dockerfile.backend
+    stdin_open: true
+    tty: true
+    shm_size: 8g
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379/0
+      - SEARXNG_URL=http://10.0.11.107:8080
+      - OLLAMA_URL=http://10.0.11.104:11434
   #    - LM_STUDIO_URL=http://localhost:1234
-  #  extra_hosts:
-  #    - "host.docker.internal:host-gateway"
-  #  depends_on:
-  #    - redis
-  #    - searxng
-  #  networks:
-  #    - agentic-seek-net
-  
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - redis
+      - searxng
+    networks:
+      - agentic-seek-net
+
 volumes:
   redis-data:
   chrome_profiles:

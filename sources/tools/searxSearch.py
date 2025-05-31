@@ -112,6 +112,6 @@ class searxSearch(Tools):
         return f"Web search result:\n{output}"
 
 if __name__ == "__main__":
-    search_tool = searxSearch(base_url="http://127.0.0.1:8080")
+    search_tool = searxSearch(base_url="http://10.0.11.107:8080")
     result = search_tool.execute(["are dog better than cat?"])
     print(result)
