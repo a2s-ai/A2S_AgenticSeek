@@ -1,3 +1,27 @@
+A2S-AI (Build and Run)
+
+```
+git clone https://github.com/a2s-ai/A2S_AgenticSeek.git
+
+cd A2S_AgenticSeek/
+
+cp .env.example .env
+vi .env
+
+root@ai-ubuntu22gpu-nvidia-l4:/opt/A2S_AgenticSeek_TEST_RUN_8_GITHUB/A2S_AgenticSeek# cat .env
+SEARXNG_BASE_URL="http://10.0.11.107:8080"
+OPENAI_API_KEY='xxxxx'
+DEEPSEEK_API_KEY='xxxxx'
+OPENROUTER_API_KEY='xxxxx'
+root@ai-ubuntu22gpu-nvidia-l4:/opt/A2S_AgenticSeek_TEST_RUN_8_GITHUB/A2S_AgenticSeek#
+
+chown -R ai:ai /opt
+
+docker compose up
+```
+
+![a2s-ai](a2s-ai/a2s-ai_agenticseek_1.jpg)
+
 # AgenticSeek: Private, Local Manus Alternative.
 
 <p align="center">
