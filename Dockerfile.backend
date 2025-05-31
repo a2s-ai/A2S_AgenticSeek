@@ -67,7 +67,6 @@ RUN set -eux; \
       "https://storage.googleapis.com/chrome-for-testing-public/${CHROME_TESTING_VERSION}/linux64/chrome-linux64.zip"; \
     unzip -q /tmp/chrome.zip -d /opt; \
     rm /tmp/chrome.zip; \
-    # Symlink ins PATH
     ln -s /opt/chrome-linux64/chrome /usr/local/bin/google-chrome; \
     ln -s /opt/chrome-linux64/chrome /usr/local/bin/chrome; \
     mkdir -p /opt/chrome; \
@@ -83,28 +82,24 @@ RUN set -eux; \
     chmod +x /usr/local/bin/chromedriver; \
     chromedriver --version
 
-#RUN apt-get install -y chromium-chromedriver
+#/ RUN apt-get install -y chromium-chromedriver
 
 RUN chmod +x /opt/chrome/chrome
 
-# Install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 RUN mkdir -p /opt/workspace_for_agenticseek
 
-# Copy application code
 COPY api.py .
 COPY sources/ ./sources/
 COPY prompts/ ./prompts/
 COPY crx/ crx/
 COPY llm_router/ llm_router/
-COPY .env .
+#/ COPY .env . #(respect .dockerignore)
 COPY config.ini .
 
-# Expose port
 EXPOSE 8000
 
-# Run the application
 CMD ["python3", "api.py"]
 
