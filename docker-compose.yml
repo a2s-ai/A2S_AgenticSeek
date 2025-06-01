@@ -32,7 +32,7 @@ services:
       - ./searxng:/etc/searxng:rw,z
     environment:
       - SEARXNG_BASE_URL=http://10.0.11.107:8080/
-      - SEARXNG_SECRET_KEY=49b857fa3d63247783903f4d8315f9f5c7372bf2b2b80d8fb376a3fe12465f19
+      - SEARXNG_SECRET_KEY=$VAR_SEARXNG_SECRET_KEY
       - UWSGI_WORKERS=4
       - UWSGI_THREADS=4
     cap_add:

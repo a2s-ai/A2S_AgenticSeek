@@ -19,6 +19,8 @@ find . -type f -exec sed -i 's/10.0.11.107/YOUR-SERVER-IP/g' {} +
 
 chown -R ai:ai /opt
 
+export VAR_SEARXNG_SECRET_KEY=$(openssl rand -hex 32)
+
 docker compose up
 ```
 
